@@ -1,0 +1,10 @@
+*,
+body {
+  margin: 0;
+  font-family: GveretLevin;
+}
+
+@font-face {
+  font-family: GveretLevin;
+  src: url("../public/fonts/GveretLevin.ttf") format("truetype");
+}

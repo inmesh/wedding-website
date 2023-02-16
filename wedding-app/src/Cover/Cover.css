@@ -1,0 +1,97 @@
+.background {
+  background-size: cover;
+  filter: brightness(80%);
+  object-fit: cover;
+  height: 450px;
+  width: 100vw;
+  opacity: 0.5;
+}
+
+#coverContainer {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.dateImg {
+  top: 350px;
+  width: 300px;
+}
+
+#title {
+  width: 300px;
+  top: 35px;
+}
+
+.centerOverImage {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+h3 {
+  top: 413px;
+  direction: rtl;
+}
+
+.down-arrow {
+  position: absolute;
+  top: 445px;
+  width: 0;
+  animation: jumpInfinite 1.5s infinite;
+}
+
+.down-arrow:after {
+  content: " ";
+  position: absolute;
+  left: -10px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 4px solid;
+  border-right: 4px solid;
+  border-radius: 4px;
+  transform: rotateZ(45deg);
+}
+
+@media only screen and (min-width: 600px) {
+  .background {
+    height: 700px;
+  }
+
+  #title {
+    width: 500px;
+    top: 50px;
+  }
+
+  .dateImg {
+    top: 500px;
+    width: 500px;
+  }
+
+  h3 {
+    top: 610px;
+    font-size: 40px;
+  }
+
+  .down-arrow {
+    top: 650px;
+  }
+}
+
+@keyframes jumpInfinite {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 20px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
