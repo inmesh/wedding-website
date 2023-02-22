@@ -1,24 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ChangeEvent, MouseEvent } from "react";
 import InputField from "./InputField";
-import "./GuestForm.css";
+import "./GuestForm.styles.tsx";
 import constants from "./GuestForm.constants";
+import Radio from "./Radio";
+import { Form, SubmitButton } from "./GuestForm.styles";
+import QuantityButton from "./QuantityButton";
 
-interface fieldsType {
-  name: string;
-  phone: string;
-  actual_guests?: number | string;
-}
+// interface fieldsType {
+//   name: string;
+//   phone: string;
+//   actual_guests?: number | string;
+// }
+
 const GuestForm = () => {
-  const { name, phone, howMany, coming, notComing } = constants;
-  const [fields, setFields] = useState<fieldsType>({
+  const { name, phone, coming, send, hi } = constants;
+  const initFields = {
     name: "",
     phone: "",
-    actual_guests: "",
-  });
-
+    actual_guests: 0,
+  };
+  const [fields, setFields] = useState(initFields);
+  const [comingStatus, setComingStatus] = useState("");
+  const [loadedGuest, setLoadedGuest] = useState(true);
   const phoneParam = new URLSearchParams(window.location.search).get("p");
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const isComing = comingStatus === coming;
+
+  const onRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setComingStatus(e.target.value);
+  };
+
+  const onQuantityChange = (add: number) => {
+    const guestsNumber = fields.actual_guests + add;
+    setFields({
+      ...fields,
+      actual_guests: guestsNumber < 0 ? 0 : guestsNumber,
+    });
+  };
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
   };
 
@@ -29,6 +49,7 @@ const GuestForm = () => {
       })
       .then((res) => {
         if (res?.message) {
+          setLoadedGuest(false);
           return;
         }
 
@@ -37,30 +58,33 @@ const GuestForm = () => {
           phone: res.phone,
           actual_guests: res.actual_guests ?? res.expected_guests,
         });
+        setLoadedGuest(true);
       })
       .catch((err) => {
         console.log(err);
+        setLoadedGuest(false);
       });
   }, []);
 
-  const onSubmit = ({ notComing }: { notComing?: boolean }) => {
+  const onSubmit = (/*e?: React.MouseEventHandler<HTMLButtonElement>*/) => {
+    // e.preventDefault();
     fetch(`http://localhost:3000/guest/${fields.phone}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(
-        notComing ? fields : { ...fields, actual_guests: 0 }
-      ),
+      body: JSON.stringify(isComing ? fields : { ...fields, actual_guests: 0 }),
     })
       .then((res) => {
         console.log(res);
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        console.log(err);
       });
   };
 
+  // const areFieldsReset = JSON.stringify(initFields) === JSON.stringify(fields);
+
   return (
-    <form className="guestForm">
+    <Form>
       <InputField
         label={name}
         type="text"
@@ -75,29 +99,14 @@ const GuestForm = () => {
         value={fields.phone}
         onChange={onChange}
       />
-      <InputField
-        label={howMany}
-        type="number"
-        name="actual_guests"
-        value={fields.actual_guests as number}
-        onChange={onChange}
+      <Radio value={comingStatus} onChange={onRadioChange} />
+      <QuantityButton
+        value={fields.actual_guests}
+        onChange={onQuantityChange}
+        hide={!isComing}
       />
-      <div className="buttons">
-        <button
-          className="submitButton"
-          type="submit"
-          onClick={() => onSubmit({ notComing: false })}
-        >
-          {coming}
-        </button>
-        <button
-          className="cantButton"
-          onClick={() => onSubmit({ notComing: true })}
-        >
-          {notComing}
-        </button>
-      </div>
-    </form>
+      <SubmitButton onClick={onSubmit}>{send}</SubmitButton>
+    </Form>
   );
 };
 

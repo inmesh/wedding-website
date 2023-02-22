@@ -2,8 +2,11 @@ const constants = {
   name: "שם",
   phone: "טלפון",
   howMany: "כמה תהיו?",
-  coming: "מאשר הגעה!",
-  notComing: "לצערי לא אגיע",
+  coming: "מגיע",
+  notComing: "לא מגיע",
+  maybe: "אולי",
+  hi: "היי",
+  send: "שלח",
 };
 
 export default constants;
