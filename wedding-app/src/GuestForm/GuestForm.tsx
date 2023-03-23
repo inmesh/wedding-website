@@ -85,20 +85,26 @@ const GuestForm = () => {
 
   return (
     <Form>
-      <InputField
-        label={name}
-        type="text"
-        name="name"
-        value={fields.name}
-        onChange={onChange}
-      />
-      <InputField
-        label={phone}
-        type="number"
-        name="phone"
-        value={fields.phone}
-        onChange={onChange}
-      />
+      {loadedGuest ? (
+        <p>{hi + " " + fields.name}</p>
+      ) : (
+        <>
+          <InputField
+            label={name}
+            type="text"
+            name="name"
+            value={fields.name}
+            onChange={onChange}
+          />
+          <InputField
+            label={phone}
+            type="number"
+            name="phone"
+            value={fields.phone}
+            onChange={onChange}
+          />
+        </>
+      )}
       <Radio value={comingStatus} onChange={onRadioChange} />
       <QuantityButton
         value={fields.actual_guests}

@@ -1,5 +1,4 @@
 import Cover from "./Cover/Cover";
-import Footer from "./Footer/Footer";
 import GuestForm from "./GuestForm/GuestForm";
 import "./App.css";
 
@@ -8,10 +7,9 @@ function App() {
     <>
       <Cover />
       <div className="formAndInvite">
-        <GuestForm />
         <img className="invitation" src="/images/invite.png" alt="invitation" />
+        <GuestForm />
       </div>
-      <Footer />
     </>
   );
 }

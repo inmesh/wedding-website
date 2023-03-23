@@ -11,6 +11,8 @@ const Form = styled.form`
   align-content: space-evenly;
   font-size: 22px;
   margin: 40px 20px 20px 20px;
+  gap: 20px;
+  font-family: Open Sans;
 `;
 
 const SubmitButton = styled.button`
@@ -24,6 +26,7 @@ const SubmitButton = styled.button`
   letter-spacing: 1.5px;
   background-color: #84a98c;
   color: #fff;
+  font-family: Open Sans;
 
   &:hover {
     background-color: #52796f;
