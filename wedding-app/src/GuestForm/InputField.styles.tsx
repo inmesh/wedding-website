@@ -6,8 +6,8 @@ const Input = styled.input`
   outline: none;
   border: none;
   border-bottom: 2px solid #6c757d;
-  line-height: 30px;
-  font-size: 20px;
+  line-height: 20px;
+  font-size: 16px;
 
   &:focus,
   &:valid {
@@ -22,9 +22,10 @@ const Input = styled.input`
 
   &:focus ~ label,
   &:valid ~ label {
-    top: -25px;
+    top: -15px;
     right: 0;
     color: #84a98c;
+    font-size: 16px;
   }
 `;
 

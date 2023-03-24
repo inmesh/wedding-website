@@ -6,12 +6,6 @@ import Radio from "./Radio";
 import { Form, SubmitButton } from "./GuestForm.styles";
 import QuantityButton from "./QuantityButton";
 
-// interface fieldsType {
-//   name: string;
-//   phone: string;
-//   actual_guests?: number | string;
-// }
-
 const GuestForm = () => {
   const { name, phone, coming, send, hi } = constants;
   const initFields = {
@@ -30,7 +24,8 @@ const GuestForm = () => {
     setComingStatus(e.target.value);
   };
 
-  const onQuantityChange = (add: number) => {
+  const onQuantityChange = (e: MouseEvent<HTMLButtonElement>, add: number) => {
+    e.preventDefault();
     const guestsNumber = fields.actual_guests + add;
     setFields({
       ...fields,
@@ -66,8 +61,8 @@ const GuestForm = () => {
       });
   }, []);
 
-  const onSubmit = (/*e?: React.MouseEventHandler<HTMLButtonElement>*/) => {
-    // e.preventDefault();
+  const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     fetch(`http://localhost:3000/guest/${fields.phone}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -84,7 +79,7 @@ const GuestForm = () => {
   // const areFieldsReset = JSON.stringify(initFields) === JSON.stringify(fields);
 
   return (
-    <Form>
+    <Form expanded={isComing}>
       {loadedGuest ? (
         <p>{hi + " " + fields.name}</p>
       ) : (

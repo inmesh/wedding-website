@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import {
   AddButton,
   QuantityContainer,
@@ -9,7 +9,7 @@ import constants from "./GuestForm.constants";
 
 interface Props {
   value: number | null;
-  onChange: (add: number) => void;
+  onChange: (e: MouseEvent<HTMLButtonElement>, add: number) => void;
   hide: boolean;
 }
 
@@ -20,9 +20,9 @@ const QuantityButton = (props: Props) => {
     <QuantityAndText hide={hide}>
       <Text>{constants.howMany}</Text>
       <QuantityContainer>
-        <AddButton onClick={() => onChange(-1)}>-</AddButton>
+        <AddButton onClick={(e) => onChange(e, -1)}>-</AddButton>
         {value}
-        <AddButton onClick={() => onChange(1)}>+</AddButton>
+        <AddButton onClick={(e) => onChange(e, 1)}>+</AddButton>
       </QuantityContainer>
     </QuantityAndText>
   );

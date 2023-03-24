@@ -27,6 +27,7 @@ const AddButton = styled.button`
   font-size: 30px;
   line-height: 0px;
   padding: 0 0 5px 0;
+  font-family: GveretLevin;
 
   &:hover {
     background-color: #52796f;

@@ -21,8 +21,8 @@ const RadioInput = styled.input`
 const RadioLabel = styled.label`
   display: inline-block;
   background-color: white;
-  padding: 10px 20px;
-  font-size: 20px;
+  padding: 10px 12px;
+  font-size: 16px;
   border: 2px solid #6c757d;
   color: #6c757d;
   border-radius: 12px;
