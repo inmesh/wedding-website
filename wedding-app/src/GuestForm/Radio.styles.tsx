@@ -18,12 +18,16 @@ const RadioInput = styled.input`
   }
 `;
 
-const RadioLabel = styled.label`
+interface Props {
+  error: boolean;
+}
+
+const RadioLabel = styled.label<Props>`
   display: inline-block;
   background-color: white;
   padding: 10px 12px;
   font-size: 16px;
-  border: 2px solid #6c757d;
+  border: 2px solid ${(p) => (p.error ? "#ef233c" : "#6c757d")};
   color: #6c757d;
   border-radius: 12px;
 

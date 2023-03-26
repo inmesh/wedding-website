@@ -7,10 +7,11 @@ interface Props {
   name: string;
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error: boolean;
 }
 
 const InputField = (props: Props) => {
-  const { label, type, name, value, onChange } = props;
+  const { label, type, name, value, onChange, error } = props;
   return (
     <InputContainer>
       <Input
@@ -19,6 +20,7 @@ const InputField = (props: Props) => {
         value={value}
         onChange={onChange}
         required
+        error={error}
       />
       <Label>{label}</Label>
     </InputContainer>

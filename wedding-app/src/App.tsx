@@ -7,8 +7,8 @@ function App() {
     <>
       <Cover />
       <div className="formAndInvite">
-        <img className="invitation" src="/images/invite.png" alt="invitation" />
         <GuestForm />
+        <img className="invitation" src="/images/invite.png" alt="invitation" />
       </div>
     </>
   );

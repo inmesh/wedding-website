@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
-const Input = styled.input`
+interface Props {
+  error: boolean;
+}
+
+const Input = styled.input<Props>`
   padding: 10px 0 5px 0;
   margin-bottom: 15px;
   outline: none;
   border: none;
-  border-bottom: 2px solid #6c757d;
+  border-bottom: 2px solid ${(p) => (p.error ? "#ef233c" : "#6c757d")};
   line-height: 20px;
   font-size: 16px;
 
