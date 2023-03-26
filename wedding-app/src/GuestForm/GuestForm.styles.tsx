@@ -36,4 +36,13 @@ const SubmitButton = styled.button`
   }
 `;
 
-export { Form, SubmitButton };
+const Link = styled.p`
+  text-decoration: underline;
+  color: #84a98c;
+
+  &:hover {
+    color: #52796f;
+  }
+`;
+
+export { Form, SubmitButton, Link };

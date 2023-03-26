@@ -1,5 +1,5 @@
 import React from "react";
-import constants from "./GuestForm.constants";
+import constants from "../GuestForm.constants";
 import { RadioContainer, RadioInput, RadioLabel } from "./Radio.styles";
 
 interface Props {

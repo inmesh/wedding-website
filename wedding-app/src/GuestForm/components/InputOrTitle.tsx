@@ -1,6 +1,6 @@
 import React from "react";
 import InputField from "./InputField";
-import constants from "./GuestForm.constants";
+import constants from "../GuestForm.constants";
 
 interface Props {
   loadedGuest: boolean;

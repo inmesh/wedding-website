@@ -5,7 +5,7 @@ import {
   QuantityAndText,
   Text,
 } from "./QuantityButton.styles";
-import constants from "./GuestForm.constants";
+import constants from "../GuestForm.constants";
 
 interface Props {
   value: number | null;

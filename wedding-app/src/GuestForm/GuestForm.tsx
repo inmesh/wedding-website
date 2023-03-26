@@ -1,10 +1,11 @@
 import { useEffect, useState, ChangeEvent, MouseEvent } from "react";
 import "./GuestForm.styles.tsx";
 import constants from "./GuestForm.constants";
-import Radio from "./Radio";
+import Radio from "./components/Radio";
 import { Form, SubmitButton } from "./GuestForm.styles";
-import QuantityButton from "./QuantityButton";
-import InputOrTitle from "./InputOrTitle";
+import QuantityButton from "./components/QuantityButton";
+import InputOrTitle from "./components/InputOrTitle";
+import SentScreen from "./components/SentScreen";
 
 const { coming, send, gotResponse } = constants;
 
@@ -73,7 +74,6 @@ const GuestForm = () => {
     const nameErr = !loadedGuest && fields.name === "";
     const phoneErr = !loadedGuest && fields.phone === "";
     const comingErr = fields.coming_status === "";
-
     setErrors({
       name: nameErr,
       phone: phoneErr,
@@ -106,7 +106,7 @@ const GuestForm = () => {
   return (
     <Form expanded={isComing}>
       {sent ? (
-        <p>{gotResponse}</p>
+        <SentScreen />
       ) : (
         <>
           <InputOrTitle

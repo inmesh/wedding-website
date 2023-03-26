@@ -8,6 +8,7 @@ const constants = {
   hi: "היי",
   send: "שלח",
   gotResponse: `תודה! \n תגובתך נרשמה`,
+  update: "לעדכון לחצו כאן",
 };
 
 export default constants;
