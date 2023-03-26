@@ -7,6 +7,7 @@ const constants = {
   maybe: "אולי",
   hi: "היי",
   send: "שלח",
+  gotResponse: `תודה! \n תגובתך נרשמה`,
 };
 
 export default constants;

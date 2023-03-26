@@ -4,8 +4,7 @@ import constants from "./GuestForm.constants";
 
 interface Props {
   loadedGuest: boolean;
-  guestName: string;
-  guestPhone: string;
+  fields: { [key: string]: string | number };
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   errors: { [key: string]: boolean };
 }
@@ -13,17 +12,17 @@ interface Props {
 const { name, phone, hi } = constants;
 
 const InputOrTitle = (props: Props) => {
-  const { loadedGuest, guestName, guestPhone, onChange, errors } = props;
+  const { loadedGuest, fields, onChange, errors } = props;
 
   return loadedGuest ? (
-    <p>{hi + " " + name}</p>
+    <p>{hi + " " + fields.name}</p>
   ) : (
     <>
       <InputField
         label={name}
         type="text"
         name="name"
-        value={guestName}
+        value={fields.name}
         onChange={onChange}
         error={errors?.name}
       />
@@ -31,7 +30,7 @@ const InputOrTitle = (props: Props) => {
         label={phone}
         type="number"
         name="phone"
-        value={guestPhone}
+        value={fields.phone}
         onChange={onChange}
         error={errors?.phone}
       />

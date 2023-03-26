@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEvent, MouseEvent } from "react";
+import { useEffect, useState, ChangeEvent, MouseEvent } from "react";
 import "./GuestForm.styles.tsx";
 import constants from "./GuestForm.constants";
 import Radio from "./Radio";
@@ -6,7 +6,7 @@ import { Form, SubmitButton } from "./GuestForm.styles";
 import QuantityButton from "./QuantityButton";
 import InputOrTitle from "./InputOrTitle";
 
-const { coming, send } = constants;
+const { coming, send, gotResponse } = constants;
 
 const GuestForm = () => {
   const initFields = {
@@ -57,7 +57,7 @@ const GuestForm = () => {
           name: res.name,
           phone: res.phone,
           actual_guests: res.actual_guests ?? res.expected_guests,
-          coming_status: res.coming_status,
+          coming_status: res.coming_status ?? "",
         });
         setLoadedGuest(true);
       })
@@ -70,18 +70,21 @@ const GuestForm = () => {
   const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    const nameErr = !loadedGuest && fields.name === "";
+    const phoneErr = !loadedGuest && fields.phone === "";
+    const comingErr = fields.coming_status === "";
+
     setErrors({
-      name: !loadedGuest && fields.name === "",
-      phone: !loadedGuest && fields.phone === "",
-      coming_status: fields.coming_status === "",
+      name: nameErr,
+      phone: phoneErr,
+      coming_status: comingErr,
     });
 
-    if (
-      !loadedGuest &&
-      fields.name !== "" &&
-      fields.phone !== "" &&
-      fields.coming_status !== ""
-    ) {
+    const noErrors = loadedGuest
+      ? !comingErr
+      : !comingErr && !nameErr && !phoneErr;
+
+    if (noErrors) {
       const url = `http://localhost:3000/guest/${fields.phone}`;
       console.log(url);
       fetch(url, {
@@ -100,25 +103,22 @@ const GuestForm = () => {
     }
   };
 
-  // const areFieldsReset = JSON.stringify(initFields) === JSON.stringify(fields);
-
   return (
     <Form expanded={isComing}>
       {sent ? (
-        <p>{`תודה! \n תגובתך נרשמה`}</p>
+        <p>{gotResponse}</p>
       ) : (
         <>
           <InputOrTitle
             loadedGuest={loadedGuest}
-            guestName={fields.name}
-            guestPhone={fields.phone}
+            fields={fields}
             onChange={onInputChange}
             errors={errors}
           />
           <Radio
             value={fields.coming_status}
             onChange={onRadioChange}
-            error={errors.coming_status ?? false}
+            error={errors.coming_status}
           />
           <QuantityButton
             value={fields.actual_guests}
