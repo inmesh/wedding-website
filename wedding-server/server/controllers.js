@@ -17,6 +17,7 @@ const newGuest = (req, res) => {
         phone: req.body.phone,
         expected_guests: req.body.expected_guests,
         actual_guests: req.body.actual_guests,
+        coming_status: req.body.coming_status,
       });
 
       newGuest.save((err, data) => {
@@ -51,10 +52,12 @@ const getOneGuest = (req, res) => {
 const updateGuest = (req, res) => {
   Guest.findOne({ phone: req.params.phone }, (err, data) => {
     if (err || !data) {
-      return res.json({ message: "Guest doesn't exist." });
+      newGuest(req, res);
+      return res.json({ message: "Guest doesn't exist, created new one." });
     } else {
       data.actual_guests = req.body.actual_guests;
-      data.date = new Date();
+      data.coming_status = req.body.coming_status;
+      data.last_mod = new Date();
       data.save((err) => {
         if (err) {
           return res.json({ message: "Failed to update.", error: err });

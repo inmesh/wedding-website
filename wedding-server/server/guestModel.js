@@ -16,7 +16,11 @@ const GuestSchema = new mongoose.Schema({
     type: Number,
     default: null,
   },
-  date: {
+  coming_status: {
+    type: String,
+    default: null,
+  },
+  last_mod: {
     type: Date,
   },
 });
