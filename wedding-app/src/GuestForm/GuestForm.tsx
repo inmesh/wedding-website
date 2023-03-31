@@ -68,7 +68,7 @@ const GuestForm = () => {
         console.log(err);
         setLoadedGuest(false);
       });
-  }, []);
+  }, [idParam]);
 
   const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
