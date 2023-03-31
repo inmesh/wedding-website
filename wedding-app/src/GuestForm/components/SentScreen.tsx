@@ -1,9 +1,9 @@
 import constants from "../GuestForm.constants";
 import { Link } from "../GuestForm.styles";
 
-const SentScreen = () => {
+const SentScreen = ({ id }: { id: string | null }) => {
   const refresh = () => {
-    window.location.reload();
+    window.location.replace(window.location.origin + `/?id=${id}`);
   };
 
   return (

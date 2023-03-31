@@ -10,8 +10,8 @@ router.get("/guest", guestController.getAllGuests);
 router.post("/guest", upload.none(), guestController.newGuest);
 router.delete("/guest", guestController.deleteAllGuests);
 
-router.get("/guest/:phone", guestController.getOneGuest);
-router.post("/guest/:phone", guestController.updateGuest);
-router.delete("/guest/:phone", guestController.deleteOneGuest);
+router.get("/guest/:id", guestController.getOneGuest);
+router.post("/guest/:id", guestController.updateGuest);
+router.delete("/guest/:id", guestController.deleteOneGuest);
 
 module.exports = router;

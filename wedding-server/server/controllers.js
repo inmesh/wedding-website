@@ -1,6 +1,6 @@
 const Guest = require("./guestModel");
 
-const getAllGuests = (req, res) => {
+const getAllGuests = (_, res) => {
   Guest.find({}, (err, data) => {
     if (err) {
       return res.json({ Error: err });
@@ -10,7 +10,7 @@ const getAllGuests = (req, res) => {
 };
 
 const newGuest = (req, res) => {
-  Guest.findOne({ phone: req.body.phone }, (err, data) => {
+  Guest.findOne({ _id: req.body.id }, (err, data) => {
     if (!data) {
       const newGuest = new Guest({
         name: req.body.name,
@@ -18,6 +18,7 @@ const newGuest = (req, res) => {
         expected_guests: req.body.expected_guests,
         actual_guests: req.body.actual_guests,
         coming_status: req.body.coming_status,
+        last_mod: new Date(),
       });
 
       newGuest.save((err, data) => {
@@ -32,7 +33,7 @@ const newGuest = (req, res) => {
   });
 };
 
-const deleteAllGuests = (req, res) => {
+const deleteAllGuests = (_, res) => {
   Guest.deleteMany({}, (err) => {
     if (err) {
       return res.json({ message: "Complete delete failed" });
@@ -42,7 +43,8 @@ const deleteAllGuests = (req, res) => {
 };
 
 const getOneGuest = (req, res) => {
-  Guest.findOne({ phone: req.params.phone }, (err, data) => {
+  Guest.findOne({ _id: req.params.id }, (err, data) => {
+    console.log(req.params.id);
     if (err || !data) {
       return res.json({ message: "Guest doesn't exist." });
     } else return res.json(data);
@@ -50,10 +52,9 @@ const getOneGuest = (req, res) => {
 };
 
 const updateGuest = (req, res) => {
-  Guest.findOne({ phone: req.params.phone }, (err, data) => {
+  Guest.findOne({ _id: req.params.id }, (err, data) => {
     if (err || !data) {
-      newGuest(req, res);
-      return res.json({ message: "Guest doesn't exist, created new one." });
+      return res.json({ message: "Guest doesn't exist" });
     } else {
       data.actual_guests = req.body.actual_guests;
       data.coming_status = req.body.coming_status;
@@ -69,7 +70,7 @@ const updateGuest = (req, res) => {
 };
 
 const deleteOneGuest = (req, res) => {
-  Guest.deleteOne({ phone: req.params.phone }, (err, data) => {
+  Guest.deleteOne({ _id: req.params.id }, (err, data) => {
     if (data.deletedCount === 0)
       return res.json({ message: "Guest doesn't exist." });
     else if (err)

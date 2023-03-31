@@ -7,7 +7,7 @@ import QuantityButton from "./components/QuantityButton";
 import InputOrTitle from "./components/InputOrTitle";
 import SentScreen from "./components/SentScreen";
 
-const { coming, send, gotResponse } = constants;
+const { coming, send } = constants;
 
 const GuestForm = () => {
   const initFields = {
@@ -21,7 +21,9 @@ const GuestForm = () => {
   const [errors, setErrors] = useState<{ [key: string]: boolean }>({});
   const [loadedGuest, setLoadedGuest] = useState(true);
   const [sent, setSent] = useState(false);
-  const phoneParam = new URLSearchParams(window.location.search).get("p");
+  const [idParam, setIdParam] = useState(
+    new URLSearchParams(window.location.search).get("id")
+  );
 
   const isComing = fields.coming_status === coming;
 
@@ -44,7 +46,7 @@ const GuestForm = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/guest/${phoneParam}`, { method: "GET" })
+    fetch(`http://localhost:3000/guest/${idParam}`, { method: "GET" })
       .then((res) => {
         return res.json();
       })
@@ -85,7 +87,7 @@ const GuestForm = () => {
       : !comingErr && !nameErr && !phoneErr;
 
     if (noErrors) {
-      const url = `http://localhost:3000/guest/${fields.phone}`;
+      const url = `http://localhost:3000/guest/${loadedGuest ? idParam : ""}`;
       console.log(url);
       fetch(url, {
         method: "POST",
@@ -94,8 +96,12 @@ const GuestForm = () => {
           isComing ? fields : { ...fields, actual_guests: 0 }
         ),
       })
-        .then(() => {
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
           setSent(true);
+          setIdParam(res["_id"]);
         })
         .catch((err) => {
           console.log(err);
@@ -106,7 +112,7 @@ const GuestForm = () => {
   return (
     <Form expanded={isComing}>
       {sent ? (
-        <SentScreen />
+        <SentScreen id={idParam} />
       ) : (
         <>
           <InputOrTitle
