@@ -20,6 +20,9 @@ const GuestSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  category: {
+    type: String,
+  },
   last_mod: {
     type: Date,
   },
