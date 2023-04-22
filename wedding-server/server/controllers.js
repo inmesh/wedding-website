@@ -1,4 +1,13 @@
 const Guest = require("./guestModel");
+const mongoose = require("mongoose");
+
+const alive = (_, res) => {
+  if (mongoose.connection.readyState === 1) {
+    return res.json({ status: "I'm alive!" });
+  } else {
+    return res.json({ status: "not alive" });
+  }
+};
 
 const getAllGuests = (_, res) => {
   Guest.find({}, (err, data) => {
@@ -10,26 +19,33 @@ const getAllGuests = (_, res) => {
 };
 
 const newGuest = (req, res) => {
-  Guest.findOne({ _id: req.body.id }, (err, data) => {
-    if (!data) {
-      const newGuest = new Guest({
-        name: req.body.name,
-        phone: req.body.phone,
-        expected_guests: req.body.expected_guests,
-        actual_guests: req.body.actual_guests,
-        coming_status: req.body.coming_status,
-        last_mod: new Date(),
-      });
+  const AWS = require("aws-sdk");
+  const SNSClient = new AWS.SNS({ region: "eu-north-1" });
 
-      newGuest.save((err, data) => {
-        if (err) return res.json({ Error: err });
-        return res.json(data);
-      });
-    } else {
-      if (err)
-        return res.json(`Something went wrong, please try again. ${err}`);
-      return res.json({ message: "Guest phone already exists" });
+  const newGuest = new Guest({
+    name: req.body.name,
+    phone: req.body.phone,
+    expected_guests: req.body.expected_guests,
+    actual_guests: req.body.actual_guests,
+    coming_status: req.body.coming_status,
+    last_mod: new Date(),
+  });
+
+  newGuest.save(async (err, data) => {
+    if (err) return res.json({ Error: err });
+
+    const jsonData = res.json(data);
+    try {
+      const resp = await SNSClient.publish({
+        Message: `Thanks for RSVPing! here's the link for updating your status: https://main.d2h38jsnoornds.amplifyapp.com/?id=${jsonData["_id"]}`,
+        PhoneNumber: `+972${req.body.phone}`,
+      }).promise();
+      console.log("sms:", resp);
+    } catch (e) {
+      console.log("failed sending sms, ", e);
     }
+
+    return jsonData;
   });
 };
 
@@ -80,6 +96,7 @@ const deleteOneGuest = (req, res) => {
 };
 
 module.exports = {
+  alive,
   getAllGuests,
   newGuest,
   deleteAllGuests,
