@@ -6,7 +6,6 @@ import { Form, SubmitButton } from "./GuestForm.styles";
 import QuantityButton from "./components/QuantityButton";
 import InputOrTitle from "./components/InputOrTitle";
 import SentScreen from "./components/SentScreen";
-import awsExports from "../aws-exports";
 
 const { coming, send } = constants;
 
