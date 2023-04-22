@@ -34,6 +34,7 @@ const newGuest = (req, res) => {
   newGuest.save(async (err, data) => {
     if (err) return res.json({ Error: err });
 
+    let isBadPhone = false;
     const phoneFromBody = req.body.phone;
     const phone =
       phoneFromBody.charAt(0) === "0"
@@ -43,15 +44,15 @@ const newGuest = (req, res) => {
     if (phoneFromBody.charAt(0) === "+") {
       console.log("international number"); // need to check if rest are numbers?
     } else if (
-      phone.length === 9 &&
-      /^\d+$/.test(phone) &&
-      phone.charAt(0) === "5"
+      !(phone.length === 9 && /^\d+$/.test(phone) && phone.charAt(0) === "5")
     ) {
-      console.log("good phone");
+      isBadPhone = true;
+      console.log("bad phone");
     }
     try {
+      if (isBadPhone) return;
       const resp = await SNSClient.publish({
-        Message: `תודה! תגובתך נרשמה. הנה הלינק לעדכון סטטוס ההגעה:: https://main.d2h38jsnoornds.amplifyapp.com/?id=${data._id.toString()}`,
+        Message: `תודה! תגובתך נרשמה. הנה הלינק לעדכון סטטוס ההגעה: https://main.d2h38jsnoornds.amplifyapp.com/?id=${data._id.toString()}`,
         PhoneNumber: `+972${phone}`,
       }).promise();
       console.log("sms:", resp);
