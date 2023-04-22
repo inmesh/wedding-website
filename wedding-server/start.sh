@@ -1,1 +1,1 @@
-docker build . -t ec2-app && docker run -d --name autoheal --restart=always -e AUTOHEAL_CONTAINER_LABEL=all -v /var/run/docker.sock:/var/run/docker.sock willfarrell/autoheal && docker run -d -p 3000:3000 ec2-app
+docker rm -f $(docker ps -a -q) && docker build . -t ec2-app && docker run -d --name autoheal --restart=always -e AUTOHEAL_CONTAINER_LABEL=all -v /var/run/docker.sock:/var/run/docker.sock willfarrell/autoheal && docker run -d -p 3000:3000 ec2-app
