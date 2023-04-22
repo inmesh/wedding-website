@@ -1,0 +1,50 @@
+{
+  "dev": {
+    "awscloudformation": {},
+    "categories": {
+      "function": {
+        "getGuest": {}
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-weddingwebsite-prod-221519-authRole",
+      "UnauthRoleArn": "arn:aws:iam::048879675712:role/amplify-weddingwebsite-prod-221519-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::048879675712:role/amplify-weddingwebsite-prod-221519-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+      "UnauthRoleName": "amplify-weddingwebsite-prod-221519-unauthRole",
+      "StackName": "amplify-weddingwebsite-prod-221519",
+      "StackId": "arn:aws:cloudformation:eu-north-1:048879675712:stack/amplify-weddingwebsite-prod-221519/dc80a870-e078-11ed-820e-0a829312b6c4",
+      "AmplifyAppId": "d2h38jsnoornds"
+    },
+    "categories": {
+      "function": {
+        "getGuest": {
+          "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+          "s3Key": "amplify-builds/getGuest-4b354457614271394377-build.zip"
+        },
+        "getOneGuest": {
+          "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+          "s3Key": "amplify-builds/getOneGuest-36782f574f325276676b-build.zip"
+        },
+        "weddingwebsitemongooseInit": {
+          "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+          "s3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion538b67d4-build.zip"
+        },
+        "readdir": {
+          "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+          "s3Key": "amplify-builds/readdir-7a6937726e7739715147-build.zip"
+        },
+        "createGuest": {
+          "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+          "s3Key": "amplify-builds/createGuest-576d454a5349736c774f-build.zip"
+        }
+      },
+      "api": {
+        "wedApi": {}
+      }
+    }
+  }
+}

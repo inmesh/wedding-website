@@ -6,6 +6,7 @@ import { Form, SubmitButton } from "./GuestForm.styles";
 import QuantityButton from "./components/QuantityButton";
 import InputOrTitle from "./components/InputOrTitle";
 import SentScreen from "./components/SentScreen";
+import awsExports from "../aws-exports";
 
 const { coming, send } = constants;
 
@@ -24,6 +25,9 @@ const GuestForm = () => {
   const [idParam, setIdParam] = useState(
     new URLSearchParams(window.location.search).get("id")
   );
+  const baseUrl = awsExports.aws_cloud_logic_custom.find(
+    (x) => x.name === "wedApi"
+  )?.endpoint;
 
   const isComing = fields.coming_status === coming;
 
@@ -46,7 +50,7 @@ const GuestForm = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/guest/${idParam}`, { method: "GET" })
+    fetch(`${baseUrl}/guest/${idParam}`, { method: "GET" })
       .then((res) => {
         return res.json();
       })
@@ -87,7 +91,9 @@ const GuestForm = () => {
       : !comingErr && !nameErr && !phoneErr;
 
     if (noErrors) {
-      const url = `http://localhost:3000/guest/${loadedGuest ? idParam : ""}`;
+      const url = `${baseUrl}/${
+        loadedGuest ? `guest/${idParam}` : "createGuest"
+      }`;
       console.log(url);
       fetch(url, {
         method: "POST",

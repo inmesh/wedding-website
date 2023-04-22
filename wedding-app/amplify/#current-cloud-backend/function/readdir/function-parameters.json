@@ -1,0 +1,11 @@
+{
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "weddingwebsitemongooseInit",
+      "env": "prod",
+      "version": 3,
+      "isLatestVersionSelected": false
+    }
+  ]
+}

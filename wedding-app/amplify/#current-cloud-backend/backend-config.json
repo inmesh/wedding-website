@@ -1,0 +1,162 @@
+{
+  "api": {
+    "wedApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getOneGuest"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "createGuest"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "createGuest": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "weddingwebsitemongooseInit"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getGuest": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getOneGuest": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "weddingwebsitemongooseInit"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "readdir": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "weddingwebsitemongooseInit"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "weddingwebsitemongooseInit": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_createGuest_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createGuest"
+        }
+      ]
+    },
+    "AMPLIFY_function_createGuest_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createGuest"
+        }
+      ]
+    },
+    "AMPLIFY_function_getGuest_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getGuest"
+        }
+      ]
+    },
+    "AMPLIFY_function_getGuest_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getGuest"
+        }
+      ]
+    },
+    "AMPLIFY_function_getOneGuest_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getOneGuest"
+        }
+      ]
+    },
+    "AMPLIFY_function_getOneGuest_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getOneGuest"
+        }
+      ]
+    },
+    "AMPLIFY_function_readdir_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "readdir"
+        }
+      ]
+    },
+    "AMPLIFY_function_readdir_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "readdir"
+        }
+      ]
+    },
+    "AMPLIFY_function_weddingwebsitemongooseInit_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "weddingwebsitemongooseInit"
+        }
+      ]
+    },
+    "AMPLIFY_function_weddingwebsitemongooseInit_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "weddingwebsitemongooseInit"
+        }
+      ]
+    }
+  }
+}

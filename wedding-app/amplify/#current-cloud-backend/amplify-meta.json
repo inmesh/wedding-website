@@ -1,0 +1,205 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-weddingwebsite-prod-221519-authRole",
+      "UnauthRoleArn": "arn:aws:iam::048879675712:role/amplify-weddingwebsite-prod-221519-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::048879675712:role/amplify-weddingwebsite-prod-221519-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+      "UnauthRoleName": "amplify-weddingwebsite-prod-221519-unauthRole",
+      "StackName": "amplify-weddingwebsite-prod-221519",
+      "StackId": "arn:aws:cloudformation:eu-north-1:048879675712:stack/amplify-weddingwebsite-prod-221519/dc80a870-e078-11ed-820e-0a829312b6c4",
+      "AmplifyAppId": "d2h38jsnoornds"
+    }
+  },
+  "api": {
+    "wedApi": {
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "getOneGuest",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "createGuest",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/api/wedApi-cloudformation-template.json",
+        "logicalId": "apiwedApi"
+      },
+      "lastPushTimeStamp": "2023-04-22T12:10:53.047Z",
+      "output": {
+        "ApiName": "wedApi",
+        "RootUrl": "https://olryl5qykl.execute-api.eu-north-1.amazonaws.com/prod",
+        "ApiId": "olryl5qykl"
+      },
+      "lastPushDirHash": "NfhMVJVayEaMY0M/gSeV4IBrFcE="
+    }
+  },
+  "function": {
+    "getGuest": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2023-04-21T21:37:55.892Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-04-21T21:37:58.865Z",
+      "distZipFilename": "getGuest-56563156366538633757-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+        "s3Key": "amplify-builds/getGuest-4b354457614271394377-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/getGuest-cloudformation-template.json",
+        "logicalId": "functiongetGuest"
+      },
+      "lastPushTimeStamp": "2023-04-22T12:10:53.050Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::048879675712:role/weddingwebsiteLambdaRole791627db-prod",
+        "Region": "eu-north-1",
+        "Arn": "arn:aws:lambda:eu-north-1:048879675712:function:getGuest-prod",
+        "Name": "getGuest-prod",
+        "LambdaExecutionRole": "weddingwebsiteLambdaRole791627db-prod"
+      },
+      "lastPushDirHash": "bhf/Yd9pRf1J8GORq4gYRIZRitg="
+    },
+    "weddingwebsitemongooseInit": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true,
+      "lastBuildTimeStamp": "2023-04-22T10:29:51.896Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-04-22T10:29:55.865Z",
+      "distZipFilename": "weddingwebsitemongooseInit-LambdaLayerVersion538b67d4-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+        "s3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion538b67d4-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/weddingwebsitemongooseInit-awscloudformation-template.json",
+        "logicalId": "functionweddingwebsitemongooseInit"
+      },
+      "lastPushTimeStamp": "2023-04-22T12:10:53.051Z",
+      "latestPushedVersionHash": "7787e5cb4e7eca4626317a903bf891125b6131fb73fc58013da22b0e35ba5e5f",
+      "output": {
+        "Arn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:5"
+      }
+    },
+    "getOneGuest": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "weddingwebsitemongooseInit",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ],
+      "lastPushTimeStamp": "2023-04-22T12:10:53.052Z",
+      "lastBuildTimeStamp": "2023-04-22T11:21:47.842Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-04-22T11:21:47.970Z",
+      "distZipFilename": "getOneGuest-36782f574f325276676b-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+        "s3Key": "amplify-builds/getOneGuest-36782f574f325276676b-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/getOneGuest-cloudformation-template.json",
+        "logicalId": "functiongetOneGuest"
+      },
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::048879675712:role/weddingwebsiteLambdaRoleeca8eb7a-prod",
+        "Region": "eu-north-1",
+        "Arn": "arn:aws:lambda:eu-north-1:048879675712:function:getOneGuest-prod",
+        "Name": "getOneGuest-prod",
+        "LambdaExecutionRole": "weddingwebsiteLambdaRoleeca8eb7a-prod"
+      },
+      "lastPushDirHash": "BVhfHa+m4jANq1hfe0ZYkxFtiGw="
+    },
+    "readdir": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "weddingwebsitemongooseInit",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2023-04-22T09:59:07.257Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-04-22T09:59:07.390Z",
+      "distZipFilename": "readdir-7a6937726e7739715147-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+        "s3Key": "amplify-builds/readdir-7a6937726e7739715147-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/readdir-cloudformation-template.json",
+        "logicalId": "functionreaddir"
+      },
+      "lastPushTimeStamp": "2023-04-22T12:10:53.054Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::048879675712:role/weddingwebsiteLambdaRole185cb35f-prod",
+        "Region": "eu-north-1",
+        "Arn": "arn:aws:lambda:eu-north-1:048879675712:function:readdir-prod",
+        "Name": "readdir-prod",
+        "LambdaExecutionRole": "weddingwebsiteLambdaRole185cb35f-prod"
+      },
+      "lastPushDirHash": "ci0K8lBhzJsqnoJkK/CjJRQjbu4="
+    },
+    "createGuest": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "weddingwebsitemongooseInit",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2023-04-22T12:09:46.791Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-04-22T12:09:46.919Z",
+      "distZipFilename": "createGuest-576d454a5349736c774f-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
+        "s3Key": "amplify-builds/createGuest-576d454a5349736c774f-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/createGuest-cloudformation-template.json",
+        "logicalId": "functioncreateGuest"
+      },
+      "lastPushTimeStamp": "2023-04-22T12:10:53.524Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::048879675712:role/weddingwebsiteLambdaRole8cb0a969-prod",
+        "Region": "eu-north-1",
+        "Arn": "arn:aws:lambda:eu-north-1:048879675712:function:createGuest-prod",
+        "Name": "createGuest-prod",
+        "LambdaExecutionRole": "weddingwebsiteLambdaRole8cb0a969-prod"
+      },
+      "lastPushDirHash": "qOQccmQ4TYjvg3e/qrHs8Kze0pg="
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "paths": {
+    "/guest/{id}": {
+      "name": "/guest/{id}",
+      "lambdaFunction": "getOneGuest",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/createGuest": {
+      "name": "/createGuest",
+      "lambdaFunction": "createGuest",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
