@@ -25,9 +25,10 @@ const GuestForm = () => {
   const [idParam, setIdParam] = useState(
     new URLSearchParams(window.location.search).get("id")
   );
-  const baseUrl = awsExports.aws_cloud_logic_custom.find(
-    (x: { [key: string]: string }) => x.name === "wedApi"
-  )?.endpoint;
+  // const baseUrl = awsExports.aws_cloud_logic_custom.find(
+  //   (x: { [key: string]: string }) => x.name === "wedApi"
+  // )?.endpoint;
+  const baseUrl = process.env.SERVER_URL;
 
   const isComing = fields.coming_status === coming;
 
