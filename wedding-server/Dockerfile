@@ -6,6 +6,8 @@ COPY package*.json ./
 
 RUN npm install
 
+RUN apt-get update && apt-get install -y curl
+
 COPY . .
 
 ENV MONGODB_URL="mongodb.net"
