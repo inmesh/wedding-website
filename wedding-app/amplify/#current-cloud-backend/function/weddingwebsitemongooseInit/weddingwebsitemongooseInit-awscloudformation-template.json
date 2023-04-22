@@ -20,7 +20,7 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersion538b67d4": {
+    "LambdaLayerVersion5ba1a0f4": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": {
@@ -51,19 +51,19 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivate538b67d4": {
+    "LambdaLayerPermissionPrivate5ba1a0f4": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
         "LayerVersionArn": {
-          "Ref": "LambdaLayerVersion538b67d4"
+          "Ref": "LambdaLayerVersion5ba1a0f4"
         },
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
-    "LambdaLayerVersionfaf05738": {
+    "LambdaLayerVersionbeb72a72": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -73,9 +73,9 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersionfaf05738-build.zip"
+          "S3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersionbeb72a72-build.zip"
         },
-        "Description": "Updated layer version 2023-04-22T10:16:16.030Z",
+        "Description": "Updated layer version 2023-04-22T14:14:09.681Z",
         "LayerName": {
           "Fn::Sub": [
             "weddingwebsitemongooseInit-${env}",
@@ -90,17 +90,17 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivatefaf05738": {
+    "LambdaLayerPermissionPrivatebeb72a72": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:4",
+        "LayerVersionArn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:10",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
-    "LambdaLayerVersion5b59f773": {
+    "LambdaLayerVersion5972ddab": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -110,9 +110,9 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion5b59f773-build.zip"
+          "S3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion5972ddab-build.zip"
         },
-        "Description": "Updated layer version 2023-04-21T21:25:08.294Z",
+        "Description": "Updated layer version 2023-04-22T14:11:09.484Z",
         "LayerName": {
           "Fn::Sub": [
             "weddingwebsitemongooseInit-${env}",
@@ -127,17 +127,17 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivate5b59f773": {
+    "LambdaLayerPermissionPrivate5972ddab": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:3",
+        "LayerVersionArn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:9",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
       }
     },
-    "LambdaLayerVersionce093f2d": {
+    "LambdaLayerVersion87d70c38": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -147,9 +147,9 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersionce093f2d-build.zip"
+          "S3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion87d70c38-build.zip"
         },
-        "Description": "Updated layer version 2023-04-21T20:46:20.514Z",
+        "Description": "Updated layer version 2023-04-22T14:05:31.250Z",
         "LayerName": {
           "Fn::Sub": [
             "weddingwebsitemongooseInit-${env}",
@@ -164,11 +164,85 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivatece093f2d": {
+    "LambdaLayerPermissionPrivate87d70c38": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:2",
+        "LayerVersionArn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:8",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion95d65b05": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs16.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion95d65b05-build.zip"
+        },
+        "Description": "Updated layer version 2023-04-22T14:01:58.040Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "weddingwebsitemongooseInit-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate95d65b05": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:7",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersionc723bd80": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs16.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersionc723bd80-build.zip"
+        },
+        "Description": "Updated layer version 2023-04-22T12:36:15.864Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "weddingwebsitemongooseInit-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivatec723bd80": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:6",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
@@ -178,7 +252,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersion538b67d4"
+        "Ref": "LambdaLayerVersion5ba1a0f4"
       }
     }
   }

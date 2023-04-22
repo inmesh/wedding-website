@@ -27,11 +27,12 @@
         },
         "getOneGuest": {
           "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
-          "s3Key": "amplify-builds/getOneGuest-36782f574f325276676b-build.zip"
+          "s3Key": "amplify-builds/getOneGuest-675a542b7059634c5441-build.zip",
+          "secretsPathAmplifyAppId": "d2h38jsnoornds"
         },
         "weddingwebsitemongooseInit": {
           "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
-          "s3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion538b67d4-build.zip"
+          "s3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion5ba1a0f4-build.zip"
         },
         "readdir": {
           "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
@@ -39,11 +40,18 @@
         },
         "createGuest": {
           "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
-          "s3Key": "amplify-builds/createGuest-576d454a5349736c774f-build.zip"
+          "s3Key": "amplify-builds/createGuest-6a544331367735456545-build.zip",
+          "secretsPathAmplifyAppId": "d2h38jsnoornds"
         }
       },
       "api": {
         "wedApi": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2h38jsnoornds",
+          "type": "cicd"
+        }
       }
     }
   }

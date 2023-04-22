@@ -1,9 +1,24 @@
+/*
+Use the following code to retrieve configured secrets from SSM:
+
+const aws = require('aws-sdk');
+
+const { Parameters } = await (new aws.SSM())
+  .getParameters({
+    Names: ["mongooseUrl"].map(secretName => process.env[secretName]),
+    WithDecryption: true,
+  })
+  .promise();
+
+Parameters will be of the form { Name: 'secretName', Value: 'secretValue', ... }[]
+*/
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 
+const Guest = require("/opt/guestmodel");
+
 exports.handler = async (event) => {
-  const Guest = require("/opt/guestmodel");
   console.log(`EVENT: ${JSON.stringify(event)}`);
   let resData, resErr;
   const method = event.httpMethod;
@@ -29,6 +44,7 @@ exports.handler = async (event) => {
         .catch((err) => {
           console.log(`ERROR: ${JSON.stringify(err)}`);
           resErr = err;
+          process.exit();
         });
       break;
     default:
@@ -40,6 +56,7 @@ exports.handler = async (event) => {
         .catch((err) => {
           console.log(`ERROR: ${JSON.stringify(err)}`);
           resErr = err;
+          process.exit();
         });
   }
 

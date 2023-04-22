@@ -50,6 +50,8 @@ const GuestForm = () => {
   };
 
   useEffect(() => {
+    if (!idParam) return;
+
     fetch(`${baseUrl}/guest/${idParam}`, { method: "GET" })
       .then((res) => {
         return res.json();

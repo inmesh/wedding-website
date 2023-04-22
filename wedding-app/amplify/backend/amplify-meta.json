@@ -38,7 +38,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/api/wedApi-cloudformation-template.json",
         "logicalId": "apiwedApi"
       },
-      "lastPushTimeStamp": "2023-04-22T12:10:53.047Z",
+      "lastPushTimeStamp": "2023-04-22T15:23:54.011Z",
       "output": {
         "ApiName": "wedApi",
         "RootUrl": "https://olryl5qykl.execute-api.eu-north-1.amazonaws.com/prod",
@@ -64,7 +64,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/getGuest-cloudformation-template.json",
         "logicalId": "functiongetGuest"
       },
-      "lastPushTimeStamp": "2023-04-22T12:10:53.050Z",
+      "lastPushTimeStamp": "2023-04-22T15:23:54.014Z",
       "output": {
         "LambdaExecutionRoleArn": "arn:aws:iam::048879675712:role/weddingwebsiteLambdaRole791627db-prod",
         "Region": "eu-north-1",
@@ -78,22 +78,22 @@
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer",
       "build": true,
-      "lastBuildTimeStamp": "2023-04-22T10:29:51.896Z",
+      "lastBuildTimeStamp": "2023-04-22T14:18:52.047Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2023-04-22T10:29:55.865Z",
-      "distZipFilename": "weddingwebsitemongooseInit-LambdaLayerVersion538b67d4-build.zip",
+      "lastPackageTimeStamp": "2023-04-22T14:18:56.087Z",
+      "distZipFilename": "weddingwebsitemongooseInit-LambdaLayerVersion5ba1a0f4-build.zip",
       "s3Bucket": {
         "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
-        "s3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion538b67d4-build.zip"
+        "s3Key": "amplify-builds/weddingwebsitemongooseInit-LambdaLayerVersion5ba1a0f4-build.zip"
       },
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/weddingwebsitemongooseInit-awscloudformation-template.json",
         "logicalId": "functionweddingwebsitemongooseInit"
       },
-      "lastPushTimeStamp": "2023-04-22T12:10:53.051Z",
+      "lastPushTimeStamp": "2023-04-22T15:23:54.015Z",
       "latestPushedVersionHash": "7787e5cb4e7eca4626317a903bf891125b6131fb73fc58013da22b0e35ba5e5f",
       "output": {
-        "Arn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:5"
+        "Arn": "arn:aws:lambda:eu-north-1:048879675712:layer:weddingwebsitemongooseInit-prod:11"
       }
     },
     "getOneGuest": {
@@ -109,14 +109,14 @@
           ]
         }
       ],
-      "lastPushTimeStamp": "2023-04-22T12:10:53.052Z",
-      "lastBuildTimeStamp": "2023-04-22T11:21:47.842Z",
+      "lastPushTimeStamp": "2023-04-22T15:23:54.016Z",
+      "lastBuildTimeStamp": "2023-04-22T14:02:09.874Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2023-04-22T11:21:47.970Z",
-      "distZipFilename": "getOneGuest-36782f574f325276676b-build.zip",
+      "lastPackageTimeStamp": "2023-04-22T14:02:10.094Z",
+      "distZipFilename": "getOneGuest-675a542b7059634c5441-build.zip",
       "s3Bucket": {
         "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
-        "s3Key": "amplify-builds/getOneGuest-36782f574f325276676b-build.zip"
+        "s3Key": "amplify-builds/getOneGuest-675a542b7059634c5441-build.zip"
       },
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/getOneGuest-cloudformation-template.json",
@@ -129,7 +129,7 @@
         "Name": "getOneGuest-prod",
         "LambdaExecutionRole": "weddingwebsiteLambdaRoleeca8eb7a-prod"
       },
-      "lastPushDirHash": "BVhfHa+m4jANq1hfe0ZYkxFtiGw="
+      "lastPushDirHash": "RynPvewVY6jfvsTM8jSwFhFF/3o="
     },
     "readdir": {
       "build": true,
@@ -156,7 +156,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/readdir-cloudformation-template.json",
         "logicalId": "functionreaddir"
       },
-      "lastPushTimeStamp": "2023-04-22T12:10:53.054Z",
+      "lastPushTimeStamp": "2023-04-22T15:23:54.021Z",
       "output": {
         "LambdaExecutionRoleArn": "arn:aws:iam::048879675712:role/weddingwebsiteLambdaRole185cb35f-prod",
         "Region": "eu-north-1",
@@ -179,19 +179,19 @@
           ]
         }
       ],
-      "lastBuildTimeStamp": "2023-04-22T12:09:46.791Z",
+      "lastBuildTimeStamp": "2023-04-22T15:22:47.935Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2023-04-22T12:09:46.919Z",
-      "distZipFilename": "createGuest-576d454a5349736c774f-build.zip",
+      "lastPackageTimeStamp": "2023-04-22T15:22:48.065Z",
+      "distZipFilename": "createGuest-6a544331367735456545-build.zip",
       "s3Bucket": {
         "deploymentBucketName": "amplify-weddingwebsite-prod-221519-deployment",
-        "s3Key": "amplify-builds/createGuest-576d454a5349736c774f-build.zip"
+        "s3Key": "amplify-builds/createGuest-6a544331367735456545-build.zip"
       },
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-weddingwebsite-prod-221519-deployment/amplify-cfn-templates/function/createGuest-cloudformation-template.json",
         "logicalId": "functioncreateGuest"
       },
-      "lastPushTimeStamp": "2023-04-22T12:10:53.524Z",
+      "lastPushTimeStamp": "2023-04-22T15:23:54.498Z",
       "output": {
         "LambdaExecutionRoleArn": "arn:aws:iam::048879675712:role/weddingwebsiteLambdaRole8cb0a969-prod",
         "Region": "eu-north-1",
@@ -199,7 +199,14 @@
         "Name": "createGuest-prod",
         "LambdaExecutionRole": "weddingwebsiteLambdaRole8cb0a969-prod"
       },
-      "lastPushDirHash": "qOQccmQ4TYjvg3e/qrHs8Kze0pg="
+      "lastPushDirHash": "mNpL9q4PNcbhdjZjP1XHYW6RhJ0="
+    }
+  },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2023-04-22T12:34:34.162Z"
     }
   }
 }

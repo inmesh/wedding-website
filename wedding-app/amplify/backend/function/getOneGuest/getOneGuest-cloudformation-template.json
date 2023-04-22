@@ -19,6 +19,9 @@
     "functionweddingwebsitemongooseInitArn": {
       "Type": "String",
       "Default": "functionweddingwebsitemongooseInitArn"
+    },
+    "secretsPathAmplifyAppId": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -73,6 +76,28 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "mongooseUrl": {
+              "Fn::Join": [
+                "",
+                [
+***REMOVED*** {
+***REMOVED***   "Fn::Sub": [
+***REMOVED***     "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
+***REMOVED***     {
+***REMOVED***       "appId": {
+***REMOVED***         "Ref": "secretsPathAmplifyAppId"
+***REMOVED***       },
+***REMOVED***       "env": {
+***REMOVED***         "Ref": "env"
+***REMOVED***       },
+***REMOVED***       "functionName": "getOneGuest"
+***REMOVED***     }
+***REMOVED***   ]
+***REMOVED*** },
+***REMOVED*** "mongooseUrl"
+                ]
+              ]
             }
           }
         },
@@ -172,6 +197,63 @@
           ]
         }
       }
+    },
+    "AmplifyFunctionSecretsPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-function-secrets-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "ssm:GetParameter",
+                "ssm:GetParameters"
+              ],
+              "Resource": {
+                "Fn::Join": [
+***REMOVED*** "",
+***REMOVED*** [
+***REMOVED***   "arn:aws:ssm:",
+***REMOVED***   {
+***REMOVED***     "Ref": "AWS::Region"
+***REMOVED***   },
+***REMOVED***   ":",
+***REMOVED***   {
+***REMOVED***     "Ref": "AWS::AccountId"
+***REMOVED***   },
+***REMOVED***   ":parameter",
+***REMOVED***   {
+***REMOVED***     "Fn::Sub": [
+***REMOVED***       "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
+***REMOVED***       {
+***REMOVED***         "appId": {
+***REMOVED***           "Ref": "secretsPathAmplifyAppId"
+***REMOVED***         },
+***REMOVED***         "env": {
+***REMOVED***           "Ref": "env"
+***REMOVED***         },
+***REMOVED***         "functionName": "getOneGuest"
+***REMOVED***       }
+***REMOVED***     ]
+***REMOVED***   },
+***REMOVED***   "*"
+***REMOVED*** ]
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ]
     }
   },
   "Outputs": {

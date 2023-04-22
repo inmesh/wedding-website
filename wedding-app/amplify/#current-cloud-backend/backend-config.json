@@ -77,6 +77,13 @@
       "service": "LambdaLayer"
     }
   },
+  "hosting": {
+    "amplifyhosting": {
+      "lastPushTimeStamp": "2023-04-22T12:34:34.162Z",
+      "service": "amplifyhosting",
+      "type": "cicd"
+    }
+  },
   "parameters": {
     "AMPLIFY_function_createGuest_deploymentBucketName": {
       "usedBy": [
@@ -87,6 +94,14 @@
       ]
     },
     "AMPLIFY_function_createGuest_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createGuest"
+        }
+      ]
+    },
+    "AMPLIFY_function_createGuest_secretsPathAmplifyAppId": {
       "usedBy": [
         {
           "category": "function",
@@ -126,6 +141,14 @@
         }
       ]
     },
+    "AMPLIFY_function_getOneGuest_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getOneGuest"
+        }
+      ]
+    },
     "AMPLIFY_function_readdir_deploymentBucketName": {
       "usedBy": [
         {
@@ -155,6 +178,22 @@
         {
           "category": "function",
           "resourceName": "weddingwebsitemongooseInit"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_appId": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_type": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
         }
       ]
     }

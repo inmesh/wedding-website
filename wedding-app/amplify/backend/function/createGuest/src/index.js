@@ -1,9 +1,22 @@
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
+const Guest = require("/opt/guestmodel");
+
+const AWS = require("aws-sdk");
+const SNSClient = new AWS.SNS();
 
 exports.handler = async (event) => {
-  const Guest = require("/opt/guestmodel");
+  try {
+    const resp = await SNSClient.publish({
+      Message: "testtttt",
+      PhoneNumber: "+972547680150",
+    }).promise();
+    console.log("sms:", resp);
+  } catch (e) {
+    console.log(e);
+  }
+
   console.log(`EVENT: ${JSON.stringify(event)}`);
   let resData, resErr;
   const method = event.httpMethod;
@@ -11,16 +24,6 @@ exports.handler = async (event) => {
   switch (method) {
     case "POST":
       const body = JSON.parse(event.body);
-
-      //   const newGuest = new Guest({
-      //     name: body.name,
-      //     phone: body.phone,
-      //     expected_guests: body.expected_guests,
-      //     actual_guests: body.actual_guests,
-      //     coming_status: body.coming_status,
-      //     last_mod: new Date(),
-      //   });
-      //   console.log("new guest created: ", newGuest);
 
       await Guest.create({
         name: body.name,
@@ -37,6 +40,7 @@ exports.handler = async (event) => {
         .catch((err) => {
           resErr = err;
           console.log("save err", err);
+          process.exit();
         });
       break;
     default:
