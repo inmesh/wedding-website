@@ -28,6 +28,7 @@ const GuestForm = () => {
   //   (x: { [key: string]: string }) => x.name === "wedApi"
   // )?.endpoint;
   const baseUrl = process.env.SERVER_URL;
+  //const baseUrl = "https://localhost:3000";
 
   const isComing = fields.coming_status === coming;
 
