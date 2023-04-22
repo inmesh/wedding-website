@@ -26,7 +26,7 @@ const GuestForm = () => {
     new URLSearchParams(window.location.search).get("id")
   );
   const baseUrl = awsExports.aws_cloud_logic_custom.find(
-    (x) => x.name === "wedApi"
+    (x: { [key: string]: string }) => x.name === "wedApi"
   )?.endpoint;
 
   const isComing = fields.coming_status === coming;
@@ -50,7 +50,7 @@ const GuestForm = () => {
   };
 
   useEffect(() => {
-    if (!idParam) return;
+    if (!idParam) return setLoadedGuest(false);
 
     fetch(`${baseUrl}/guest/${idParam}`, { method: "GET" })
       .then((res) => {
