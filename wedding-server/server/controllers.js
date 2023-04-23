@@ -52,7 +52,7 @@ const newGuest = (req, res) => {
     try {
       if (isBadPhone) return;
       const resp = await SNSClient.publish({
-        Message: `תודה! תגובתך נרשמה. הנה הלינק לעדכון סטטוס ההגעה: https://main.d2h38jsnoornds.amplifyapp.com/?id=${data._id.toString()}`,
+        Message: `תודה! תגובתך נרשמה. הנה הלינק לעדכון סטטוס ההגעה: https://inbal-roee.com/?id=${data._id.toString()}`,
         PhoneNumber: `+972${phone}`,
       }).promise();
       console.log("sms:", resp);
