@@ -2,6 +2,7 @@ const express = require("express");
 const routes = require("./routes");
 const cors = require("cors");
 const referrerPolicy = require("referrer-policy");
+const https = require("https");
 const mongoose = require("mongoose");
 require("dotenv").config({
   path: "/Users/inbal/Documents/wedding-website/.env",
@@ -32,6 +33,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", routes);
 
-app.listen(PORT, async () => {
-  console.log(`server up on port ${PORT}`);
+https.createServer(app).listen(PORT, () => {
+  console.log(`server is runing at port ${PORT}`);
 });
