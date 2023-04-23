@@ -24,9 +24,7 @@ const GuestForm = () => {
   const [idParam, setIdParam] = useState(
     new URLSearchParams(window.location.search).get("id")
   );
-
   const baseUrl = process.env.SERVER_URL;
-  //const baseUrl = "https://localhost:3000";
 
   const isComing = fields.coming_status === coming;
 
@@ -50,6 +48,7 @@ const GuestForm = () => {
 
   useEffect(() => {
     if (!idParam) return setLoadedGuest(false);
+    if (sent) return;
 
     fetch(`${baseUrl}/guest/${idParam}`, { method: "GET" })
       .then((res) => {
@@ -95,7 +94,6 @@ const GuestForm = () => {
       const url = `${baseUrl}/${
         loadedGuest ? `guest/${idParam}` : "createGuest"
       }`;
-      console.log(url);
       fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

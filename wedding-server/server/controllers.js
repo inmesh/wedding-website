@@ -49,15 +49,17 @@ const newGuest = (req, res) => {
       isBadPhone = true;
       console.log("bad phone");
     }
-    try {
-      if (isBadPhone) return;
-      const resp = await SNSClient.publish({
-        Message: `תודה! תגובתך נרשמה. הנה הלינק לעדכון סטטוס ההגעה: https://inbal-roee.com/?id=${data._id.toString()}`,
-        PhoneNumber: `+972${phone}`,
-      }).promise();
-      console.log("sms:", resp);
-    } catch (e) {
-      console.log("failed sending sms, ", e);
+
+    if (!isBadPhone) {
+      try {
+        const resp = await SNSClient.publish({
+          Message: `תודה! תגובתך נרשמה. הנה הלינק לעדכון סטטוס ההגעה: https://inbal-roee.com/?id=${data._id.toString()}`,
+          PhoneNumber: `+972${phone}`,
+        }).promise();
+        console.log("sms:", resp);
+      } catch (e) {
+        console.log("failed sending sms, ", e);
+      }
     }
 
     return res.json(data);
