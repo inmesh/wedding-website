@@ -52,6 +52,7 @@ const newGuest = (req, res) => {
 
     if (!isBadPhone) {
       try {
+        console.log("trying to send sms");
         const resp = await SNSClient.publish({
           Message: `תודה! תגובתך נרשמה. הנה הלינק לעדכון סטטוס ההגעה: https://inbal-roee.com/?id=${data._id.toString()}`,
           PhoneNumber: `+972${phone}`,
