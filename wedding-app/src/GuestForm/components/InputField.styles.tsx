@@ -15,7 +15,7 @@ const Input = styled.input<Props>`
 
   &:focus,
   &:valid {
-    border-bottom: 2px #84a98c solid;
+    border-bottom: 2px ${(p) => (p.error ? "#ef233c" : "#84a98c")} solid;
   }
 
   &::-webkit-outer-spin-button,
@@ -43,8 +43,16 @@ const Label = styled.label`
   text-align: end;
 `;
 
+const ErrorText = styled.p<Props>`
+  font-size: 14px;
+  position: relative;
+  top: -15px;
+  color: #ef233c;
+  display: ${(p) => (p.error ? "" : "none")};
+`;
+
 const InputContainer = styled.div`
   position: relative;
 `;
 
-export { Input, Label, InputContainer };
+export { Input, Label, ErrorText, InputContainer };

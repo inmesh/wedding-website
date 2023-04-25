@@ -9,7 +9,7 @@ interface Props {
   errors: { [key: string]: boolean };
 }
 
-const { name, phone, hi } = constants;
+const { name, phone, hi, nameError, phoneError } = constants;
 
 const InputOrTitle = (props: Props) => {
   const { loadedGuest, fields, onChange, errors } = props;
@@ -25,14 +25,16 @@ const InputOrTitle = (props: Props) => {
         value={fields.name}
         onChange={onChange}
         error={errors?.name}
+        errorText={nameError}
       />
       <InputField
         label={phone}
-        type="number"
+        type="tel"
         name="phone"
         value={fields.phone}
         onChange={onChange}
         error={errors?.phone}
+        errorText={phoneError}
       />
     </>
   );

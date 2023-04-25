@@ -44,6 +44,7 @@ const GuestForm = () => {
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: false });
   };
 
   useEffect(() => {
@@ -74,11 +75,19 @@ const GuestForm = () => {
       });
   }, [idParam]);
 
+  const isPhoneValidated = (phone: string) => {
+    if (phone.substring(0, 1) === "+") {
+      return phone.substring(1).replace(/\D/g, "").length === 12;
+    } else {
+      return phone.replace(/\D/g, "").length === 10;
+    }
+  };
+
   const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     const nameErr = !loadedGuest && fields.name === "";
-    const phoneErr = !loadedGuest && fields.phone === "";
+    const phoneErr = !loadedGuest && !isPhoneValidated(fields.phone);
     const comingErr = fields.coming_status === "";
     setErrors({
       name: nameErr,

@@ -4,7 +4,7 @@ const CoverImage = styled.img`
   background-size: cover;
   filter: brightness(80%);
   object-fit: cover;
-  height: 300px;
+  height: 250px;
   width: 100vw;
   opacity: 0.5;
 
@@ -32,8 +32,8 @@ const CenterOverImage = styled.img`
 `;
 
 const DateImage = styled(CenterOverImage)`
-  top: 230px;
-  width: 300px;
+  top: 190px;
+  width: 270px;
 
   @media only screen and (min-width: 600px) {
     top: 500px;
@@ -42,8 +42,8 @@ const DateImage = styled(CenterOverImage)`
 `;
 
 const Title = styled(CenterOverImage)`
-  width: 300px;
-  top: 25px;
+  width: 270px;
+  top: 20px;
 
   @media only screen and (min-width: 600px) {
     width: 500px;

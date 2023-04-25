@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, InputContainer, Label } from "./InputField.styles";
+import { Input, InputContainer, Label, ErrorText } from "./InputField.styles";
 
 interface Props {
   label: string;
@@ -8,10 +8,11 @@ interface Props {
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error: boolean;
+  errorText: string;
 }
 
 const InputField = (props: Props) => {
-  const { label, type, name, value, onChange, error } = props;
+  const { label, type, name, value, onChange, error, errorText } = props;
   return (
     <InputContainer>
       <Input
@@ -23,6 +24,7 @@ const InputField = (props: Props) => {
         error={error}
       />
       <Label>{label}</Label>
+      <ErrorText error={error}>{errorText}</ErrorText>
     </InputContainer>
   );
 };
