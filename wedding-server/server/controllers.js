@@ -20,7 +20,8 @@ const getAllGuests = (_, res) => {
 
 const newGuest = (req, res) => {
   const AWS = require("aws-sdk");
-  const SNSClient = new AWS.SNS({ region: "eu-north-1" });
+  const SNSClient = new AWS.SNS({ region: "eu-central-1" });
+  console.log("starting create guest:", req.body.name);
 
   const newGuest = new Guest({
     name: req.body.name,
@@ -32,7 +33,10 @@ const newGuest = (req, res) => {
   });
 
   newGuest.save(async (err, data) => {
-    if (err) return res.json({ Error: err });
+    if (err) {
+      console.log("failed create guest:", req.body.name);
+      return res.json({ Error: err });
+    }
 
     let isBadPhone = false;
     const phoneFromBody = req.body.phone;
@@ -47,14 +51,14 @@ const newGuest = (req, res) => {
       !(phone.length === 9 && /^\d+$/.test(phone) && phone.charAt(0) === "5")
     ) {
       isBadPhone = true;
-      console.log("bad phone");
+      console.log("bad phone:", phone);
     }
 
     if (!isBadPhone) {
       try {
-        console.log("trying to send sms");
+        console.log("trying to send sms to:", phone);
         const resp = await SNSClient.publish({
-          Message: `תודה! תגובתך נרשמה. הנה הלינק לעדכון סטטוס ההגעה: https://inbal-roee.com/?id=${data._id.toString()}`,
+          Message: `תודה! תגובתך נרשמה🎉 הנה הלינק לעדכון סטטוס ההגעה: https://inbal-roee.com/?id=${data._id.toString()}`,
           PhoneNumber: `+972${phone}`,
         }).promise();
         console.log("sms:", resp);
@@ -62,7 +66,7 @@ const newGuest = (req, res) => {
         console.log("failed sending sms, ", e);
       }
     }
-
+    console.log("success create guest:", req.body.name);
     return res.json(data);
   });
 };
@@ -77,14 +81,19 @@ const deleteAllGuests = (_, res) => {
 };
 
 const getOneGuest = (req, res) => {
+  console.log("starting GET guest:", req.params.id);
   Guest.findOne({ _id: req.params.id }, (err, data) => {
     if (err || !data) {
       return res.json({ message: "Guest doesn't exist." });
-    } else return res.json(data);
+    } else {
+      console.log("success GET guest:", req.params.id);
+      return res.json(data);
+    }
   });
 };
 
 const updateGuest = (req, res) => {
+  console.log("starting update guest:", req.params.id);
   Guest.findOne({ _id: req.params.id }, (err, data) => {
     if (err || !data) {
       return res.json({ message: "Guest doesn't exist" });
@@ -94,8 +103,10 @@ const updateGuest = (req, res) => {
       data.last_mod = new Date();
       data.save((err) => {
         if (err) {
+          console.log("failed update guest:", req.params.id);
           return res.json({ message: "Failed to update.", error: err });
         }
+        console.log("success update guest:", req.params.id);
         return res.json(data);
       });
     }
