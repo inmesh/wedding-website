@@ -13,7 +13,7 @@ const GuestForm = () => {
   const initFields = {
     name: "",
     phone: "",
-    actual_guests: 0,
+    actual_guests: 1,
     coming_status: "",
   };
 
