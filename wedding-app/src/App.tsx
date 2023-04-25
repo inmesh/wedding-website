@@ -1,15 +1,16 @@
 import Cover from "./Cover/Cover";
 import GuestForm from "./GuestForm/GuestForm";
-import "./App.css";
+import { FormAndInvite, Invitation, Footer } from "./App.styles";
 
 function App() {
   return (
     <>
       <Cover />
-      <div className="formAndInvite">
+      <FormAndInvite>
         <GuestForm />
-        <img className="invitation" src="/images/invite.png" alt="invitation" />
-      </div>
+        <Invitation src="/images/invite.png" alt="invitation" />
+      </FormAndInvite>
+      <Footer>&#10084; Built By Roee & Inbal</Footer>
     </>
   );
 }

@@ -14,8 +14,14 @@ const Form = styled.form<Props>`
   justify-items: center;
   align-content: space-evenly;
   font-size: 20px;
-  margin: 10px 15px 0 15px;
   gap: ${(p) => (p.expanded ? 0 : "20px")};
+  width: 80vw;
+  margin: 0 auto;
+
+  @media only screen and (min-width: 600px) {
+    width: 30vw;
+    margin: 0;
+  }
 `;
 
 const SubmitButton = styled.button`
