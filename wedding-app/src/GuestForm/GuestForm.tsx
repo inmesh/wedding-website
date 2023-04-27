@@ -2,10 +2,11 @@ import { useEffect, useState, ChangeEvent, MouseEvent } from "react";
 import "./GuestForm.styles.tsx";
 import constants from "./GuestForm.constants";
 import Radio from "./components/Radio";
-import { Form, SubmitButton } from "./GuestForm.styles";
+import { Form, InfiniteRotate, SubmitButton } from "./GuestForm.styles";
 import QuantityButton from "./components/QuantityButton";
 import InputOrTitle from "./components/InputOrTitle";
 import SentScreen from "./components/SentScreen";
+import { ReactComponent as Loader } from "../assets/loader.svg";
 
 const { coming, send } = constants;
 
@@ -20,11 +21,16 @@ const GuestForm = () => {
   const [fields, setFields] = useState(initFields);
   const [errors, setErrors] = useState<{ [key: string]: boolean }>({});
   const [loadedGuest, setLoadedGuest] = useState(true);
-  const [sent, setSent] = useState(false);
   const [idParam, setIdParam] = useState(
     new URLSearchParams(window.location.search).get("id")
   );
+
+  const [sent, setSent] = useState(false);
+  const [sentError, setSentError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const baseUrl = process.env.SERVER_URL;
+  // const baseUrl = "http://localhost:3000";
 
   const isComing = fields.coming_status === coming;
 
@@ -100,6 +106,7 @@ const GuestForm = () => {
       : !comingErr && !nameErr && !phoneErr;
 
     if (noErrors) {
+      setLoading(true);
       const url = `${baseUrl}/${
         loadedGuest ? `guest/${idParam}` : "createGuest"
       }`;
@@ -111,22 +118,29 @@ const GuestForm = () => {
         ),
       })
         .then((res) => {
-          return res.json();
+          setLoading(false);
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setSentError(true);
+          setLoading(false);
         })
         .then((res) => {
           setSent(true);
           setIdParam(res["_id"]);
-        })
-        .catch((err) => {
-          console.log(err);
         });
     }
   };
 
   return (
-    <Form expanded={isComing}>
+    <Form expanded={isComing && !sent}>
       {sent ? (
-        <SentScreen id={idParam} />
+        <SentScreen id={idParam} sentError={sentError} />
       ) : (
         <>
           <InputOrTitle
@@ -145,7 +159,15 @@ const GuestForm = () => {
             onChange={onQuantityChange}
             hide={!isComing}
           />
-          <SubmitButton onClick={onSubmit}>{send}</SubmitButton>
+          <SubmitButton onClick={onSubmit}>
+            {loading ? (
+              <InfiniteRotate>
+                <Loader />
+              </InfiniteRotate>
+            ) : (
+              send
+            )}
+          </SubmitButton>
         </>
       )}
     </Form>

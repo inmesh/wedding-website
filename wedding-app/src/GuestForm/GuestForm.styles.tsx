@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface Props {
   expanded: boolean;
@@ -51,4 +51,17 @@ const Link = styled.p`
   }
 `;
 
-export { Form, SubmitButton, Link };
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const InfiniteRotate = styled.div`
+  animation: ${rotate} 0.5s linear infinite;
+`;
+
+export { Form, SubmitButton, Link, InfiniteRotate };

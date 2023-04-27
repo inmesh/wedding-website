@@ -1,15 +1,30 @@
 import constants from "../GuestForm.constants";
 import { Link } from "../GuestForm.styles";
 
-const SentScreen = ({ id }: { id: string | null }) => {
+interface Props {
+  id: string | null;
+  sentError: boolean;
+}
+
+const { sentErrorMsg, gotResponse, wouldLoveUpdates, sentErrorUpdate, update } =
+  constants;
+
+const SentScreen = ({ id, sentError }: Props) => {
   const refresh = () => {
     window.location.replace(window.location.origin + `/?id=${id}`);
   };
 
   return (
     <>
-      <p>{constants.gotResponse}</p>
-      <Link onClick={refresh}>{constants.update}</Link>
+      {sentError ? (
+        <p>{sentErrorMsg}</p>
+      ) : (
+        <>
+          <p>{gotResponse}</p>
+          <p>{wouldLoveUpdates}</p>
+        </>
+      )}
+      <Link onClick={refresh}>{sentError ? sentErrorUpdate : update}</Link>
     </>
   );
 };

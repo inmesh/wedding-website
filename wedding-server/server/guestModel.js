@@ -7,7 +7,6 @@ const GuestSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: true,
   },
   expected_guests: {
     type: Number,
@@ -28,5 +27,5 @@ const GuestSchema = new mongoose.Schema({
   },
 });
 
-const Guest = mongoose.model("Guest", GuestSchema);
+const Guest = mongoose.model("guest", GuestSchema);
 module.exports = Guest;

@@ -35,6 +35,7 @@ const newGuest = (req, res) => {
   newGuest.save(async (err, data) => {
     if (err) {
       console.log("failed create guest:", req.body.name);
+      res.status(500);
       return res.json({ Error: err });
     }
 
@@ -104,6 +105,7 @@ const updateGuest = (req, res) => {
       data.save((err) => {
         if (err) {
           console.log("failed update guest:", req.params.id);
+          res.status(500);
           return res.json({ message: "Failed to update.", error: err });
         }
         console.log("success update guest:", req.params.id);
