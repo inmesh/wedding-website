@@ -59,7 +59,7 @@ const newGuest = (req, res) => {
       try {
         console.log("trying to send sms to:", phone);
         const resp = await SNSClient.publish({
-          Message: `תודה! תגובתך נרשמה🎉 הנה הלינק לעדכון סטטוס ההגעה: https://inbal-roee.com/?id=${data._id.toString()}`,
+          Message: `תודה! תגובתך נרשמה🎉 הנה הלינק לעדכון סטטוס ההגעה: https://www.inbal-roee.com/?id=${data._id.toString()}`,
           PhoneNumber: `+972${phone}`,
         }).promise();
         console.log("sms:", resp);
@@ -97,6 +97,7 @@ const updateGuest = (req, res) => {
   console.log("starting update guest:", req.params.id);
   Guest.findOne({ _id: req.params.id }, (err, data) => {
     if (err || !data) {
+      res.status(500);
       return res.json({ message: "Guest doesn't exist" });
     } else {
       data.actual_guests = req.body.actual_guests;
