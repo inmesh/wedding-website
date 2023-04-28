@@ -5,18 +5,19 @@ const alive = (_, res) => {
   if (mongoose.connection.readyState === 1) {
     return res.json({ status: "I'm alive!" });
   } else {
+    res.status(400);
     return res.json({ status: "not alive" });
   }
 };
 
-const getAllGuests = (_, res) => {
-  Guest.find({}, (err, data) => {
-    if (err) {
-      return res.json({ Error: err });
-    }
-    return res.json(data);
-  });
-};
+// const getAllGuests = (_, res) => {
+//   Guest.find({}, (err, data) => {
+//     if (err) {
+//       return res.json({ Error: err });
+//     }
+//     return res.json(data);
+//   });
+// };
 
 const newGuest = (req, res) => {
   const AWS = require("aws-sdk");
@@ -72,14 +73,14 @@ const newGuest = (req, res) => {
   });
 };
 
-const deleteAllGuests = (_, res) => {
-  Guest.deleteMany({}, (err) => {
-    if (err) {
-      return res.json({ message: "Complete delete failed" });
-    }
-    return res.json({ message: "Complete delete successful" });
-  });
-};
+// const deleteAllGuests = (_, res) => {
+//   Guest.deleteMany({}, (err) => {
+//     if (err) {
+//       return res.json({ message: "Complete delete failed" });
+//     }
+//     return res.json({ message: "Complete delete successful" });
+//   });
+// };
 
 const getOneGuest = (req, res) => {
   console.log("starting GET guest:", req.params.id);
@@ -116,22 +117,22 @@ const updateGuest = (req, res) => {
   });
 };
 
-const deleteOneGuest = (req, res) => {
-  Guest.deleteOne({ _id: req.params.id }, (err, data) => {
-    if (data.deletedCount === 0)
-      return res.json({ message: "Guest doesn't exist." });
-    else if (err)
-      return res.json(`Something went wrong, please try again. ${err}`);
-    else return res.json({ message: "Guest deleted." });
-  });
-};
+// const deleteOneGuest = (req, res) => {
+//   Guest.deleteOne({ _id: req.params.id }, (err, data) => {
+//     if (data.deletedCount === 0)
+//       return res.json({ message: "Guest doesn't exist." });
+//     else if (err)
+//       return res.json(`Something went wrong, please try again. ${err}`);
+//     else return res.json({ message: "Guest deleted." });
+//   });
+// };
 
 module.exports = {
   alive,
-  getAllGuests,
+  // getAllGuests,
   newGuest,
-  deleteAllGuests,
+  // deleteAllGuests,
   getOneGuest,
   updateGuest,
-  deleteOneGuest,
+  // deleteOneGuest,
 };
