@@ -5,7 +5,7 @@ const alive = (_, res) => {
   if (mongoose.connection.readyState === 1) {
     return res.json({ status: "I'm alive!" });
   } else {
-    res.status(400);
+    res.status(503);
     return res.json({ status: "not alive" });
   }
 };
