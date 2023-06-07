@@ -1,5 +1,6 @@
 const Guest = require("./guestModel");
 const mongoose = require("mongoose");
+const validatePhone = require("./utils");
 
 const alive = (_, res) => {
   if (mongoose.connection.readyState === 1) {
@@ -40,28 +41,13 @@ const newGuest = (req, res) => {
       return res.json({ Error: err });
     }
 
-    let isBadPhone = false;
-    const phoneFromBody = req.body.phone;
-    const phone =
-      phoneFromBody.charAt(0) === "0"
-        ? phoneFromBody.substring(1)
-        : phoneFromBody;
-    console.log(phone);
-    if (phoneFromBody.charAt(0) === "+") {
-      console.log("international number"); // need to check if rest are numbers?
-    } else if (
-      !(phone.length === 9 && /^\d+$/.test(phone) && phone.charAt(0) === "5")
-    ) {
-      isBadPhone = true;
-      console.log("bad phone:", phone);
-    }
-
+    const [phone, isBadPhone] = validatePhone(body.req.phone);
     if (!isBadPhone) {
       try {
         console.log("trying to send sms to:", phone);
         const resp = await SNSClient.publish({
           Message: `תודה! תגובתך נרשמה🎉 הנה הלינק לעדכון סטטוס ההגעה: https://www.inbal-roee.com/?id=${data._id.toString()}`,
-          PhoneNumber: `+972${phone}`,
+          PhoneNumber: phone,
         }).promise();
         console.log("sms:", resp);
       } catch (e) {
