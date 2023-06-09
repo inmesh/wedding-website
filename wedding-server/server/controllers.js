@@ -42,7 +42,7 @@ const newGuest = (req, res) => {
       return res.json({ Error: err });
     }
 
-    const [phone, isBadPhone] = validatePhone(body.req.phone);
+    const [phone, isBadPhone] = validatePhone(req.body.phone);
     if (!isBadPhone) {
       try {
         console.log("trying to send sms to:", phone);

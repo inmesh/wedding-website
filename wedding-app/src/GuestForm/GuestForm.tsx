@@ -89,6 +89,14 @@ const GuestForm = () => {
     }
   };
 
+  const deleteNaN = (phone: string) => {
+    if (phone.substring(0, 1) === "+") {
+      return "+" + phone.substring(1).replace(/\D/g, "");
+    } else {
+      return phone.replace(/\D/g, "");
+    }
+  };
+
   const onSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -114,7 +122,9 @@ const GuestForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
-          isComing ? fields : { ...fields, actual_guests: 0 }
+          isComing
+            ? { ...fields, phone: deleteNaN(fields.phone) }
+            : { ...fields, phone: deleteNaN(fields.phone), actual_guests: 0 }
         ),
       })
         .then((res) => {
