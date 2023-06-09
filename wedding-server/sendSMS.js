@@ -34,7 +34,8 @@ Guest.find({}, async (err, data) => {
     const [phone, isBadPhone] = validatePhone(guest.phone);
     if (isBadPhone) {
       fs.appendFileSync("smsFailedReport.txt", "bad phone:" + phone);
-    } else if (guest.send_sms === false) {
+    } else if (guest.send_sms === "FALSE") {
+      console.log("not sending sms for ", phone);
       return;
     } else {
       try {

@@ -22,6 +22,9 @@ const GuestSchema = new mongoose.Schema({
   category: {
     type: String,
   },
+  send_sms: {
+    type: String,
+  },
   last_mod: {
     type: Date,
   },
