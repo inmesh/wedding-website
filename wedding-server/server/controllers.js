@@ -24,6 +24,7 @@ const newGuest = (req, res) => {
   const AWS = require("aws-sdk");
   const SNSClient = new AWS.SNS({ region: "eu-central-1" });
   console.log("starting create guest:", req.body.name);
+  console.log("this is new");
 
   const newGuest = new Guest({
     name: req.body.name,
