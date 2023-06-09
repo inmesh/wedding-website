@@ -5,7 +5,6 @@ const validatePhone = (phoneNum) => {
     phoneFromBody.charAt(0) === "0"
       ? phoneFromBody.substring(1)
       : phoneFromBody;
-  console.log(phone);
   if (phone.charAt(0) === "+") {
     console.log("international number"); // need to check if rest are numbers?
   } else if (

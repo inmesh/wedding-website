@@ -1,6 +1,7 @@
 const Guest = require("./guestModel");
 const mongoose = require("mongoose");
 const validatePhone = require("./utils");
+const { SNS } = require("@aws-sdk/client-sns");
 
 const alive = (_, res) => {
   if (mongoose.connection.readyState === 1) {
@@ -21,10 +22,8 @@ const alive = (_, res) => {
 // };
 
 const newGuest = (req, res) => {
-  const AWS = require("aws-sdk");
-  const SNSClient = new AWS.SNS({ region: "eu-central-1" });
+  const SNSClient = new SNS({ region: "eu-central-1" });
   console.log("starting create guest:", req.body.name);
-  console.log("this is new");
 
   const newGuest = new Guest({
     name: req.body.name,
@@ -49,7 +48,7 @@ const newGuest = (req, res) => {
         const resp = await SNSClient.publish({
           Message: `תודה! תגובתך נרשמה🎉 הנה הלינק לעדכון סטטוס ההגעה: https://www.inbal-roee.com/?id=${data._id.toString()}`,
           PhoneNumber: phone,
-        }).promise();
+        });
         console.log("sms:", resp);
       } catch (e) {
         console.log("failed sending sms, ", e);
