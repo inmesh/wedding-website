@@ -74,7 +74,7 @@ const getOneGuest = (req, res) => {
     if (err || !data) {
       return res.json({ message: "Guest doesn't exist." });
     } else {
-      console.log("success GET guest:", req.params.id);
+      console.log("success GET guest:", req.params.id, data.name);
       return res.json(data);
     }
   });
@@ -96,7 +96,7 @@ const updateGuest = (req, res) => {
           res.status(500);
           return res.json({ message: "Failed to update.", error: err });
         }
-        console.log("success update guest:", req.params.id);
+        console.log("success update guest:", req.params.id, data.name);
         return res.json(data);
       });
     }

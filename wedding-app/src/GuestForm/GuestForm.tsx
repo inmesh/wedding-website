@@ -8,7 +8,7 @@ import InputOrTitle from "./components/InputOrTitle";
 import SentScreen from "./components/SentScreen";
 import { ReactComponent as Loader } from "../assets/loader.svg";
 
-const { coming, send } = constants;
+const { coming, send, update } = constants;
 
 const GuestForm = () => {
   const initFields = {
@@ -28,6 +28,7 @@ const GuestForm = () => {
   const [sent, setSent] = useState(false);
   const [sentError, setSentError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [firstTime, setFirstTime] = useState(true);
 
   const baseUrl = process.env.SERVER_URL;
   // const baseUrl = "http://localhost:3000";
@@ -73,6 +74,7 @@ const GuestForm = () => {
           actual_guests: res.actual_guests ?? res.expected_guests,
           coming_status: res.coming_status ?? "",
         });
+        setFirstTime(!res.coming_status)
         setLoadedGuest(true);
       })
       .catch((err) => {
@@ -175,7 +177,7 @@ const GuestForm = () => {
                 <Loader />
               </InfiniteRotate>
             ) : (
-              send
+              firstTime ? send : update
             )}
           </SubmitButton>
         </>

@@ -6,7 +6,7 @@ interface Props {
   sentError: boolean;
 }
 
-const { sentErrorMsg, gotResponse, wouldLoveUpdates, sentErrorUpdate, update } =
+const { sentErrorMsg, gotResponse, wouldLoveUpdates, sentErrorUpdate, updateLink } =
   constants;
 
 const SentScreen = ({ id, sentError }: Props) => {
@@ -24,7 +24,7 @@ const SentScreen = ({ id, sentError }: Props) => {
           <p>{wouldLoveUpdates}</p>
         </>
       )}
-      <Link onClick={refresh}>{sentError ? sentErrorUpdate : update}</Link>
+      <Link onClick={refresh}>{sentError ? sentErrorUpdate : updateLink}</Link>
     </>
   );
 };
