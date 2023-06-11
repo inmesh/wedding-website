@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const validatePhone = require("./utils");
 const { SNS } = require("@aws-sdk/client-sns");
 
+let newGuestCounter = 0;
+
 const alive = (_, res) => {
   if (mongoose.connection.readyState === 1) {
     return res.json({ status: "I'm alive!" });
@@ -41,6 +43,12 @@ const newGuest = (req, res) => {
       return res.json({ Error: err });
     }
 
+    if (newGuestCounter >= 100) {
+      console.log("block create guest:", req.body.name, ", counter is 100");
+      res.status(500);
+      return res.json({ Error: "counter is 100" });
+    }
+
     const [phone, isBadPhone] = validatePhone(req.body.phone);
     if (!isBadPhone) {
       try {
@@ -54,7 +62,9 @@ const newGuest = (req, res) => {
         console.log("failed sending sms, ", e);
       }
     }
+    newGuestCounter += 1;
     console.log("success create guest:", req.body.name);
+    console.log("new guest counter value:", newGuestCounter);
     return res.json(data);
   });
 };
