@@ -2,6 +2,7 @@ const Guest = require("./guestModel");
 const mongoose = require("mongoose");
 const validatePhone = require("./utils");
 const { SNS } = require("@aws-sdk/client-sns");
+const _ = require("lodash");  
 
 let newGuestCounter = 0;
 
@@ -95,7 +96,7 @@ const getOneGuest = (req, res) => {
       return res.json({ message: "Guest doesn't exist." });
     } else {
       console.log("success GET guest:", req.params.id, data.name);
-      return res.json(data);
+      return res.json(_.pick(data, '_id', 'coming_status', 'actual_guests', 'name', 'expected_guests'));
     }
   });
 };

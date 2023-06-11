@@ -124,9 +124,9 @@ const GuestForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
-          isComing
-            ? { ...fields, phone: deleteNaN(fields.phone) }
-            : { ...fields, phone: deleteNaN(fields.phone), actual_guests: 0 }
+          loadedGuest
+            ? { ...fields, actual_guests: isComing ? fields.actual_guests : 0 }
+            : { ...fields, phone: deleteNaN(fields.phone), actual_guests: isComing ? fields.actual_guests : 0 }
         ),
       })
         .then((res) => {
