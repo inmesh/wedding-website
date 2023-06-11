@@ -106,7 +106,7 @@ const updateGuest = (req, res) => {
           res.status(500);
           return res.json({ message: "Failed to update.", error: err });
         }
-        console.log("success update guest:", req.params.id, data.name);
+        console.log("success update guest:", req.params.id, data.name, req.body.coming_status, req.body.actual_guests);
         return res.json(data);
       });
     }
