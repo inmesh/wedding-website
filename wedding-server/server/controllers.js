@@ -43,6 +43,16 @@ const newGuest = (req, res) => {
       return res.json({ Error: err });
     }
 
+    if (newGuestCounter === 70 || newGuestCounter === 90) {
+      try {
+        const respInbal = await SNSClient.publish({ Message: `newGuest counter is at ${newGuestCounter}`, PhoneNumber: "+972547680150" });
+        const respRoee = await SNSClient.publish({ Message: `newGuest counter is at ${newGuestCounter}`, PhoneNumber: "+972544664658" });
+        console.log("counter sms:", respInbal, respRoee);
+      } catch (e) {
+        console.log("failed sending counter sms, ", e);
+      }
+    }
+
     if (newGuestCounter >= 100) {
       console.log("block create guest:", req.body.name, ", counter is 100");
       res.status(500);
